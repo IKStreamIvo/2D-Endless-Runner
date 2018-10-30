@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798146406}
   - component: {fileID: 798146407}
+  - component: {fileID: 798146408}
   m_Layer: 2
   m_Name: GFX
   m_TagString: Untagged
@@ -177,7 +178,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e8d61be4ab80e749b08f57728897512, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc3ef865672918c4d91392fbaabc512d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -188,6 +189,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &798146408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798146405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e75e990facda4746a4f64a86dc92813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rope: {fileID: 0}
+  rotateSpeed: 3
 --- !u!1 &919244980
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd066aa325f5974781e63a72c96f002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 798146408}
   jumpForce: 2
   linePrefab: {fileID: 1805604490903826, guid: e15b6207ffc67a44e98a6fd9ac2c18cf, type: 2}
   playerRb: {fileID: 1759941540}
@@ -223,6 +238,7 @@ MonoBehaviour:
   maxRopeLength: 3
   climbSpeed: 3
   maxVelocity: {x: 10, y: 100000}
+  slowDownspeed: 25
 --- !u!4 &919244982
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +263,7 @@ GameObject:
   - component: {fileID: 1155010608}
   - component: {fileID: 1155010610}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,10 +551,10 @@ DistanceJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
+  m_Anchor: {x: 0.6, y: -0.5}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 7
+  m_Distance: 6.419502
   m_MaxDistanceOnly: 0
 --- !u!50 &1759941540
 Rigidbody2D:
@@ -572,8 +588,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.09760475}
-  m_Size: {x: 0.7928608, y: 1.1952095}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.2897276, y: 1.9442186}
   m_Direction: 0
 --- !u!4 &1759941542
 Transform:

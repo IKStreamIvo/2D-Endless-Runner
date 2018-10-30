@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	public LineRenderer lineRenderer;
-	public DistanceJoint2D joint;
-	public float force = 5f;
-	private Rigidbody2D _rb;
+	public Transform rope;
+	public float rotateSpeed = 3f;
 
-	void Start () {
-		_rb = GetComponent<Rigidbody2D>();
-	}
+	private void FixedUpdate(){
+		if(rope != null){
+			Vector3 diff = rope.position - transform.position;
+			diff.Normalize();
 	
-	void Update () {
-		_rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * force * Time.deltaTime);
-	}
-
-	private void LateUpdate(){
-		lineRenderer.SetPosition(0, transform.position);
-		lineRenderer.SetPosition(1, joint.connectedBody.position);
+			float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rot_z - 45), rotateSpeed * Time.deltaTime);
+		}
 	}
 }

@@ -14,6 +14,6 @@ public class Line : MonoBehaviour {
 	void LateUpdate () {
 		if(target == null) return;
 
-		line.SetPosition(1, target.position);
+		line.SetPosition(1, target.position + (Vector3)target.GetComponent<DistanceJoint2D>().anchor);
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+	public Player player;
 	public float jumpForce = 10f;
 	public GameObject linePrefab;
 	public Rigidbody2D playerRb;
@@ -13,8 +14,9 @@ public class GameController : MonoBehaviour {
 	private GameObject currentLine;
 	
 	public Vector2 maxVelocity = new Vector2(10f, 100000f);
+    public float slowdownSpeed = 25f;
 
-	void Update () {
+    void Update () {
 		if(Input.GetMouseButtonUp(0)){
 			Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector3 dir = (playerRb.transform.position - position).normalized;
@@ -39,6 +41,7 @@ public class GameController : MonoBehaviour {
 				playerRb.velocity = playerRb.velocity + Vector2.right * playerJoint.distance * jumpForce;
 				cameraMover.targetyX = position.x;
 				cameraMover.moveSpeed = playerJoint.distance;
+				player.rope = newLine.transform;
 			}
 
 			
@@ -51,6 +54,6 @@ public class GameController : MonoBehaviour {
 			playerJoint.distance = Mathf.MoveTowards(playerJoint.distance, maxRopeLength, Time.deltaTime * climbSpeed);
 		}
 
-		playerRb.velocity = new Vector2(Mathf.Clamp(playerRb.velocity.x, -maxVelocity.x, maxVelocity.x), playerRb.velocity.y);
+		playerRb.velocity = Vector2.Lerp(playerRb.velocity, new Vector2(Mathf.Clamp(playerRb.velocity.x, -maxVelocity.x, maxVelocity.x), playerRb.velocity.y), slowdownSpeed / (playerJoint.distance) * Time.deltaTime);
 	}
 }
