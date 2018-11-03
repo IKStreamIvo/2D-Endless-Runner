@@ -40,11 +40,10 @@ public class GameController : MonoBehaviour {
 				maxRopeLength = hit.point.y * 1.5F;
 				playerRb.velocity = playerRb.velocity + Vector2.right * playerJoint.distance * jumpForce;
 				cameraMover.targetyX = hit.point.x;
-				cameraMover.moveSpeed = playerJoint.distance;
+				//follow speed depends on how far away the point is
+				cameraMover.moveSpeed = playerJoint.distance + ((hit.point.x - Camera.main.transform.position.x)/2f);
 				player.rope = newLine.transform;
 			}
-
-			
 		}
 	}
 

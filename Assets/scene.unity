@@ -390,7 +390,7 @@ MonoBehaviour:
   followTarget: {fileID: 1759941542}
   followOffset: 4
   moveSpeed: 3
-  targetyX: 0
+  targetyX: -4
 --- !u!1 &1339200332
 GameObject:
   m_ObjectHideFlags: 0

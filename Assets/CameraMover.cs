@@ -7,10 +7,10 @@ public class CameraMover : MonoBehaviour {
 	public Transform followTarget;
 	public float followOffset = 5f;
 	public float moveSpeed = 3f;
-	public float targetyX = 0;
+	public float targetyX = -4f;
 
 	private void Start() {
-		targetyX = followTarget.position.x;
+		//targetyX = followTarget.position.x;
 		//followOffset = transform.position.x - followTarget.position.x / 1.5f; 	
 	}
 

@@ -39,9 +39,9 @@ public class WorldGenerator : MonoBehaviour {
 	}
 
     private void UpdateBackground(){
-        if(bgList.Count >= 3){
+        if(bgList.Count >= 2){
 			GameObject oldBG = bgList[0];
-			spikesList.Remove(oldBG);
+			bgList.Remove(oldBG);
 			Destroy(oldBG);
 		}
 		Vector3 position = new Vector3(bgIndex * bgWidth, 0f, 0f);
@@ -53,7 +53,7 @@ public class WorldGenerator : MonoBehaviour {
 
     //Functions
     private void PlaceSpike(){
-		if(spikesList.Count >= renderDistance){
+		if(spikesList.Count >= 12){
 			GameObject oldSpike = spikesList[0];
 			spikesList.Remove(oldSpike);
 			Destroy(oldSpike);
