@@ -6,9 +6,17 @@ public class Line : MonoBehaviour {
 
 	public LineRenderer line;
 	public Transform target;
+    public float hookLength = 2f;
 
-	void Start () {
-		line.SetPosition(0, transform.position + new Vector3(0f, 0f, -1f));
+    void Start () {
+		Vector3 diff = target.position - transform.position;
+		diff.Normalize();
+		Debug.Log(diff);
+		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90f);
+
+		diff *= hookLength;
+		line.SetPosition(0, transform.position + new Vector3(diff.x, diff.y, 1f));
 	}
 	
 	void LateUpdate () {
@@ -16,5 +24,11 @@ public class Line : MonoBehaviour {
 		Vector3 pos = target.position + (Vector3)target.GetComponent<DistanceJoint2D>().anchor;
 		pos.z = -3f;
 		line.SetPosition(1, pos);
+
+		float distance = Vector2.Distance(transform.position, target.position);
+		line.material.mainTextureScale = new Vector2(distance / 10f, .1f);
+	
+		
+		
 	}
 }
