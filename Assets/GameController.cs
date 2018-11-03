@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 			Debug.DrawRay(playerRb.transform.position, dir * 10f, Color.green);
 			if (hit.collider != null){
 				Debug.Log("hit");
-				GameObject newLine = Instantiate(linePrefab, hit.point, Quaternion.identity);
+				GameObject newLine = Instantiate(linePrefab, new Vector3(0f, 0f, -2f) + new Vector3(hit.point.x, hit.point.y), Quaternion.identity);
 				newLine.GetComponent<Line>().target = playerJoint.transform;
 				playerJoint.autoConfigureDistance = true;
 				playerJoint.connectedBody = newLine.GetComponent<Rigidbody2D>();
@@ -37,9 +37,9 @@ public class GameController : MonoBehaviour {
 					currentLine = newLine;
 				}
 
-				maxRopeLength = hit.point.y;
+				maxRopeLength = hit.point.y * 1.5F;
 				playerRb.velocity = playerRb.velocity + Vector2.right * playerJoint.distance * jumpForce;
-				cameraMover.targetyX = position.x;
+				cameraMover.targetyX = hit.point.x;
 				cameraMover.moveSpeed = playerJoint.distance;
 				player.rope = newLine.transform;
 			}

@@ -11,16 +11,16 @@ public class CameraMover : MonoBehaviour {
 
 	private void Start() {
 		targetyX = followTarget.position.x;
-		followOffset = transform.position.x - followTarget.position.x / 1.5f; 	
+		//followOffset = transform.position.x - followTarget.position.x / 1.5f; 	
 	}
 
 	void FixedUpdate () {
 		float targetX = targetyX;
 		targetX += followOffset;
 		Vector3 currPos = transform.position;
-		if(currPos.x < targetX){
+		//if(currPos.x < targetX){
 			currPos.x = targetX;
 			transform.position = Vector3.MoveTowards(transform.position, currPos, Time.deltaTime * moveSpeed);
-		}
+		//}
 	}
 }
