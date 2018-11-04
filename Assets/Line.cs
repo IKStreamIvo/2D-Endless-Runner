@@ -11,7 +11,6 @@ public class Line : MonoBehaviour {
     void Start () {
 		Vector3 diff = target.position - transform.position;
 		diff.Normalize();
-		Debug.Log(diff);
 		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90f);
 
@@ -22,13 +21,10 @@ public class Line : MonoBehaviour {
 	void LateUpdate () {
 		if(target == null) return;
 		Vector3 pos = target.position + (Vector3)target.GetComponent<DistanceJoint2D>().anchor;
-		pos.z = -3f;
+		pos.z = 1f;
 		line.SetPosition(1, pos);
 
 		float distance = Vector2.Distance(transform.position, target.position);
 		line.material.mainTextureScale = new Vector2(distance / 10f, .1f);
-	
-		
-		
 	}
 }

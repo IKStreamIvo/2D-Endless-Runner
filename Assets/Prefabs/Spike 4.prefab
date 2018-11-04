@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4716527707627888}
   - component: {fileID: 212058863278904678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126721067063722}
   - component: {fileID: 68096556136295916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
