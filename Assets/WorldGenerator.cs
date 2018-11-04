@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour {
 
 	//Editor Config
+    public GameController gameController;
 	[Header("Spikes")]
 	public int renderDistance;
 	public int xGaps;
@@ -19,6 +20,8 @@ public class WorldGenerator : MonoBehaviour {
 	public GameObject[] pickupPrefabs;
 	public Vector2 pickupGaps;
 	public Vector2 pickupYrange;
+	public GameObject enemy;
+	public float enemyThreshold;
 
 
 	//Runtime
@@ -29,8 +32,8 @@ public class WorldGenerator : MonoBehaviour {
 	private int pickupIndex = 0;
 	private List<GameObject> pickupList = new List<GameObject>();
 
-	//Unity functions
-	void Start () {
+    //Unity functions
+    void Start () {
 
 	}
 
@@ -48,13 +51,18 @@ public class WorldGenerator : MonoBehaviour {
 	}
 
     private void AddPickup(){
-		GameObject prefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
-		float rndDist = Random.Range(pickupGaps.x, pickupGaps.y);
-        Vector3 position = new Vector3(rndDist * pickupIndex, Random.Range(pickupYrange.x, pickupYrange.y), 0f);
-		GameObject pickup = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-		pickup.transform.localPosition = position;
-		//bgList.Add(bg)
-		pickupIndex++;
+		GameObject prefab;
+		if(Random.Range(0, gameController.score) < enemyThreshold){
+			prefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
+		}else{
+			prefab = enemy;
+		}
+			float rndDist = Random.Range(pickupGaps.x, pickupGaps.y);
+			Vector3 position = new Vector3(rndDist * pickupIndex, Random.Range(pickupYrange.x, pickupYrange.y), 0f);
+			GameObject pickup = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+			pickup.transform.localPosition = position;
+			pickupIndex++;
+		
     }
 
     private void UpdateBackground(){

@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 
 	//Runtime
 	private GameObject currentLine;
-	private int score;
+	public int score;
     private bool falling;
 	private bool dead;
 
@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour {
 			int layerMask = 1 << 10;
 			RaycastHit2D hit = Physics2D.Raycast(playerRb.transform.position, -dir, Mathf.Infinity, layerMask);
 			if (hit.collider != null){
+				AudioManager.instance.Play(0);
 				GameObject newLine = Instantiate(linePrefab, new Vector3(0f, 0f, -2f) + new Vector3(hit.point.x, hit.point.y), Quaternion.identity);
 				newLine.GetComponent<Line>().target = playerJoint.transform;
 				playerJoint.autoConfigureDistance = true;
@@ -95,6 +96,7 @@ public class GameController : MonoBehaviour {
 
     public void Death(){
 		if(dead) return;
+		AudioManager.instance.Play(2);
 
 		Destroy(currentLine);
 		playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
