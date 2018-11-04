@@ -42,7 +42,7 @@ public class WorldGenerator : MonoBehaviour {
 			myX += spikeDistance.x + xGaps;
 			PlaceSpike();
 		}
-		if(bgIndex * bgWidth < Camera.main.transform.position.x + bgWidth){
+		if(bgIndex * bgWidth < Camera.main.transform.position.x + bgWidth * 1.5f){
 			UpdateBackground();
 		}
 		if(pickupIndex * pickupGaps.x < Camera.main.transform.position.x + renderDistance){
@@ -66,7 +66,7 @@ public class WorldGenerator : MonoBehaviour {
     }
 
     private void UpdateBackground(){
-        if(bgList.Count >= 2){
+        if(bgList.Count >= 4){
 			GameObject oldBG = bgList[0];
 			bgList.Remove(oldBG);
 			Destroy(oldBG);
