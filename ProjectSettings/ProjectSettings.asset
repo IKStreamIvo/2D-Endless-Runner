@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.ivolutio.caveswinger
+    Android: com.brokenbaggames.treasurecave
     Standalone: com.ivolutio.caveswinger
   buildNumber: {}
   AndroidBundleVersionCode: 1
@@ -720,7 +720,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: b9fad5c3-95ab-4755-a0b5-a733308d8fd4
-  projectName: EndlessRunner
+  projectName: TreasureCave
   organizationId: ikstreamivo_unity
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
