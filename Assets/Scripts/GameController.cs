@@ -104,6 +104,16 @@ public class GameController : MonoBehaviour {
 		//player.GetComponent<Animator>().SetTrigger("Death");
 		dead = true;
 		canvas.SetTrigger("Fade");
+
+		//scoreUI.SetText(Social.localUser.authenticated + Social.localUser.userName);
+		//achievements
+		if(score >= 100){
+			GPlayGames.UnlockAchievement(GPGSIds.achievement_100_points);
+			//GPlayGames.ShowAchievementsUI();
+		}
+		//leaderboards
+		GPlayGames.AddScoreToLeaderboard(GPGSIds.leaderboard_highscore, score);
+		//GPlayGames.ShowLeaderboardsUI(GPGSIds.leaderboard_highscore);
     }
 
 	public void Quit(){

@@ -50,20 +50,21 @@ public class WorldGenerator : MonoBehaviour {
 		}
 	}
 
-    private void AddPickup(){
+	private void AddPickup(){
 		GameObject prefab;
-		if(Random.Range(0, gameController.score) < enemyThreshold){
+		float rndLog = Mathf.Log(gameController.score+1, 1.9f);
+		Debug.Log(rndLog);
+		if(Random.Range(0, rndLog) < enemyThreshold){
 			prefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
 		}else{
 			prefab = enemy;
 		}
-			float rndDist = Random.Range(pickupGaps.x, pickupGaps.y);
-			Vector3 position = new Vector3(rndDist * pickupIndex, Random.Range(pickupYrange.x, pickupYrange.y), 0f);
-			GameObject pickup = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-			pickup.transform.localPosition = position;
-			pickupIndex++;
-		
-    }
+		float rndDist = Random.Range(pickupGaps.x, pickupGaps.y);
+		Vector3 position = new Vector3(rndDist * pickupIndex, Random.Range(pickupYrange.x, pickupYrange.y), 0f);
+		GameObject pickup = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+		pickup.transform.localPosition = position;
+		pickupIndex++;
+	}
 
     private void UpdateBackground(){
         if(bgList.Count >= 4){
